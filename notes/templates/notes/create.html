@@ -1,0 +1,54 @@
+{% extends 'notes/base.html' %}
+
+{% block title %}Create Note{% endblock %}
+
+{% block content %}
+
+    <h1>Create Note</h1>
+    <a href="{% url 'notes:index' %}">一覧に戻る</a>  <button type="submit" form="note-form">Create</button> <br> <br> 
+
+    <div class="container">
+        <div class="input-area">
+            <form method="post" id="note-form">
+                {% csrf_token %}
+                <div>
+                <label for="id_title">Title:</label><br>
+                {{ form.title }}  
+                </div> <br>
+                <div>
+                <label for="id_tags">Tags:</label><br>
+                <input type="text" name="tags" id="id_tags" value="{{ form.initial.tags }}">
+                </div> <br>
+                <div>
+                <label for="id_content">Content:</label><br>
+                {{ form.content }}
+                </div>
+            </form>
+        </div>
+        <div class="preview-area">
+            <div id="preview"></div>
+        </div>
+    </div>
+
+    <script>
+        const contentTextarea = document.getElementById('id_content');
+        const previewDiv = document.getElementById('preview');
+
+        contentTextarea.addEventListener('input', () => {
+            const content = contentTextarea.value;
+            fetch('{% url 'notes:preview' %}', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                    'X-CSRFToken': '{{ csrf_token }}'
+                },
+                body: `content=${encodeURIComponent(content)}`
+            })
+            .then(response => response.json())
+            .then(data => {
+                previewDiv.innerHTML = data.html;
+            });
+        });
+    </script>
+
+{% endblock %}

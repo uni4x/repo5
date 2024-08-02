@@ -1,0 +1,129 @@
+body {
+  font-family: 'Noto Sans JP', sans-serif;
+  background-color: #f4f4f4;
+  color: #333;
+  margin: 0;
+  padding: 20px;
+}
+
+h1, h2 {
+  color: #555;
+}
+
+a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+/* a:hover {
+  color: #0056b3;
+} */
+
+.container {
+  display: flex;
+}
+
+.input-area {
+  width: 50%;
+  padding-right: 20px;
+}
+
+.preview-area {
+  width: 50%;
+}
+
+/* フォームのスタイル */
+label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+input[type="text"],
+textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-bottom: 10px;
+}
+
+button[type="submit"] {
+  background-color: #6c757d; /* グレー系 */
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+/* 一覧に戻るボタンのスタイル */
+a[href="{% url 'notes:index' %}"] {
+  background-color: #6c757d; /* グレー系 */
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+
+header {
+  background-color: #6c757d; /* グレー系 */
+  color: white; /* タイトル文字を白に変更 */
+  padding: 10px 20px;
+  margin-bottom: 20px;
+  text-align: left; /* タイトルを左寄せ */
+}
+
+header h1 {
+  color: white;  /* h1, h2 の色を白に設定 */
+}
+
+.header-button {
+  background-color: #6c757d; /* グレー系 */
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  /* float: right; */  /* 右寄せを削除 */ 
+}
+
+.edit-button, .delete-button {
+  background-color: #6c757d; /* グレー系 */
+  color: white;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-right: 5px;
+  text-decoration: none;
+}
+
+.edit-button:hover, .delete-button:hover, .header-button:hover {
+  background-color: #5e5e5e;
+}
+
+
+li { /* リストアイテムにスタイルを追加 */
+  margin-bottom: 20px; /* ノートの下にマージンを追加 */
+  background-color: #f0f0f0; /* 背景色を少し暗く */
+  padding: 15px; /* パディングを追加 */
+  border-radius: 4px; /* 角を丸める */
+  list-style: none;
+}
+
+li h2 { /* ノートのタイトルにスタイルを追加 */
+  margin-bottom: 10px; /* タイトルの下にマージンを追加 */
+}
+
+li .content { /* ノートのコンテンツにスタイルを追加 */
+  font-family: sans-serif; /* フォントをゴシックに変更 */
+  margin-top: 45px;
+  margin-bottom: 25px;
+}
+
+.tag_style {
+  font-size: 12px;
+}

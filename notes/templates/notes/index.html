@@ -1,0 +1,29 @@
+{% extends 'notes/base.html' %}
+
+{% block title %}Markdown Notes{% endblock %}
+
+{% block content %}
+    <header>
+      <h1>Markdown Notes</h1>
+    </header>
+    <main>
+    <a href="{% url 'notes:create' %}" class="header-button">Create New Note</a> 
+      <ul>
+          {% for note in notes %}
+              <li>
+                <h2>{{ note.title }}</h2>  
+                <a href="{% url 'notes:edit' note.id %}" class="edit-button">Edit</a>
+                <a href="{% url 'notes:delete' note.id %}" class="delete-button">Delete</a> <br>
+                <div class="content">{{ note.first_line|linebreaksbr|slice:":note.content|linebreaksbr|find:'<br>' " }}</div>
+
+                <div class="tag_style">
+                Tags: 
+                {% for tag in note.tags.all %}
+                    {{ tag.name }} 
+                {% endfor %}
+                </div>
+              </li>
+          {% endfor %}
+      </ul>
+  </main>
+{% endblock %}
